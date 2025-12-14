@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRAMES 25 Schedule</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #d32f2f;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            margin: 0;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .header h2 {
+            font-size: 16px;
+            margin: 10px 0;
+            font-weight: 300;
+            color: #ffd700;
+        }
+        
+        .header .dates {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+            color: #fff;
+        }
+        
+        .header .stats {
+            font-size: 13px;
+            font-style: italic;
+            color: #ddd;
+        }
+        
+        .day-section {
+            page-break-before: always;
+            margin-bottom: 40px;
+        }
+        
+        .day-section:first-of-type {
+            page-break-before: auto;
+        }
+        
+        .day-header {
+            background: #d32f2f;
+            color: white;
+            padding: 15px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .session-header {
+            background: #f5f5f5;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid #d32f2f;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: #424242;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .time-col {
+            width: 20%;
+            font-weight: bold;
+            color: #d32f2f;
+            white-space: nowrap;
+        }
+        
+        .event-col {
+            width: 80%;
+        }
+        
+        .event-title {
+            font-weight: bold;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        
+        .event-type {
+            display: inline-block;
+            background: #d32f2f;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .event-type.animation { background: #ff6f00; }
+        .event-type.documentary { background: #1976d2; }
+        .event-type.diploma { background: #388e3c; }
+        .event-type.feature { background: #7b1fa2; }
+        .event-type.discussion { background: #0097a7; }
+        .event-type.ceremony { background: #c62828; }
+        .event-type.spot { background: #f57c00; }
+        
+        .credits {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+        
+        .credits strong {
+            color: #333;
+        }
+        
+        .runtime {
+            font-style: italic;
+            color: #999;
+            font-size: 12px;
+        }
+        
+        .break-row {
+            background: #fff9c4 !important;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            border-top: 3px solid #d32f2f;
+        }
+        
+        .footer h3 {
+            color: #d32f2f;
+            margin-top: 0;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        
+        .note {
+            font-style: italic;
+            color: #666;
+            font-size: 12px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .panel-guests {
+            margin-top: 8px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 3px solid #0097a7;
+            font-size: 12px;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        button {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #b71c1c;
+        }
+        
+        @media print {
+            .button-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎬 FRAMES 25</h1>
+        <h2>Filmic Reunion by Alumni Association of Roopkala Kendro</h2>
+        <div class="dates">December 19-21, 2025 | 11:00 AM - 6:00 PM</div>
+        <div class="stats">11 Documentary & Diploma Films • 11 Animation Films • 2 Feature Films • 45 Spot Films • 1 Panel Discussion</div>
+    </div>
+
+    <div class="button-container">
+        <button onclick="window.print()">🖨️ Print Schedule</button>
+        <button onclick="downloadAsWord()">📄 Download as Word</button>
+        <button onclick="downloadAsPDF()">📑 Download as PDF</button>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="day-section">
+        <div class="day-header">📅 Day 1 | Friday, December 19, 2025</div>
+        
+        <div class="session-header">MORNING SESSION</div>
+        <table>
+            <tr>
+                <td class="time-col">11:00 AM - 11:30 AM</td>
+                <td class="event-col">
+                    <span class="event-type ceremony">Inauguration Ceremony</span>
+                    <div class="event-title">FRAMES 25 INAUGURATION</div>
+                    <div class="credits">
+                        <strong>Guests of Honor:</strong> Shri Krittibas Nayak (Director & CEO, Roopkala Kendro), Shri Pradip Kumra Sarkar (Joint Director), Shri Kaushik Nandi (Joint Director), and esteemed Faculty members
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">11:30 AM - 11:45 AM</td>
+                <td class="event-col">
+                    <span class="event-type spot">Spot Films</span>
+                    <div class="event-title">SPOT FILMS SHOWCASE</div>
+                    <div class="credits">15 films, 60 seconds each</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">11:45 AM - 12:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type animation">Animation</span>
+                    <div class="event-title">ANIMATION SHORTS BLOCK 1</div>
+                    <div class="credits">
+                        • <strong>Off Screen</strong> — Chiranjit Bhattacharya (1st Batch)<br>
+                        • <strong>The Real Man</strong> — Amit Kumar Bagchi (1st Batch)<br>
+                        • <strong>The Dream</strong> — Mou Bagchi (1st Batch)<br>
+                        • <strong>Magic Tragic</strong> — Sanjay Kumar Pyne (2nd Batch)
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="session-header">AFTERNOON SESSION</div>
+        <table>
+            <tr>
+                <td class="time-col">12:00 PM - 1:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type documentary">Documentary</span>
+                    <div class="event-title">KOBI, THE VERSIFIER <span class="runtime">(51 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Mousumi Bilkis | <strong>Cinematography:</strong> Sanjeeb Das<br>
+                        <strong>Editor:</strong> Pradipta Bhattacharyya | <strong>Sound:</strong> Sanjeeb Das
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">1:00 PM - 2:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type documentary">Documentary</span>
+                    <div class="event-title">PAROMITADER PARA <span class="runtime">(61 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Krishanu Ganguly | <strong>Cinematography:</strong> Subhankar Bhar<br>
+                        <strong>Editor:</strong> Souvik Kundu | <strong>Sound:</strong> Sukanta Mazumdar
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">2:00 PM - 2:30 PM</td>
+                <td class="event-col">
+                    <span class="event-type documentary">Documentary</span>
+                    <div class="event-title">AGAINST THE TIDE <span class="runtime">(25 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Atish Dipankar | <strong>Cinematography:</strong> Ratnadeep Roy<br>
+                        <strong>Editor:</strong> Shuvajit Mahajan | <strong>Sound:</strong> Sahadeb Das
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">2:30 PM - 3:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type discussion">Discussion</span>
+                    <div class="event-title">POST-SCREENING DISCUSSION</div>
+                </td>
+            </tr>
+            <tr class="break-row">
+                <td colspan="2">☕ BREAK: 3:00 PM - 3:30 PM</td>
+            </tr>
+        </table>
+
+        <div class="session-header">EVENING SESSION</div>
+        <table>
+            <tr>
+                <td class="time-col">3:30 PM - 6:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type feature">Alumnus Feature</span>
+                    <div class="event-title">GHASJOMI (2022) <span class="runtime">(112 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director & Editor:</strong> Sumantra Roy<br>
+                        <strong>Cinematography:</strong> Rana Pratap Karforma | <strong>Sound:</strong> Riddhi Mukherjee<br>
+                        <strong>Music:</strong> Santajit Chatterjee | <strong>Producer:</strong> Priyanka More
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-section">
+        <div class="day-header">📅 Day 2 | Saturday, December 20, 2025</div>
+        
+        <div class="session-header">MORNING SESSION</div>
+        <table>
+            <tr>
+                <td class="time-col">11:00 AM - 11:15 AM</td>
+                <td class="event-col">
+                    <span class="event-type spot">Spot Films</span>
+                    <div class="event-title">SPOT FILMS SHOWCASE</div>
+                    <div class="credits">15 films, 60 seconds each</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">11:15 AM - 11:30 AM</td>
+                <td class="event-col">
+                    <span class="event-type animation">Animation</span>
+                    <div class="event-title">ANIMATION SHORTS BLOCK 2</div>
+                    <div class="credits">
+                        • <strong>Metamorphosis</strong> — Debashis Mandal (3rd Batch)<br>
+                        • <strong>Wrong Turn</strong> — Tanmoy Debnath (3rd Batch)<br>
+                        • <strong>The Boomerang</strong> — Diptorshi Saha (5th Batch)<br>
+                        • <strong>The Unknown Truth</strong> — Soumita Das (5th Batch)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">11:30 AM - 12:30 PM</td>
+                <td class="event-col">
+                    <span class="event-type diploma">Diploma Film</span>
+                    <div class="event-title">UTTARADHIKAR <span class="runtime">(61 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Prithaj Sengupta | <strong>Cinematography:</strong> Pushpak Sarathi<br>
+                        <strong>Editor:</strong> Priyanka Saha | <strong>Sound:</strong> Riddhi Mukherjee
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="session-header">AFTERNOON SESSION</div>
+        <table>
+            <tr>
+                <td class="time-col">12:45 PM - 1:15 PM</td>
+                <td class="event-col">
+                    <span class="event-type documentary">Documentary</span>
+                    <div class="event-title">SELFIE <span class="runtime">(22 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Joy Mukherjee | <strong>Cinematography:</strong> Ranapratap Karforma<br>
+                        <strong>Editor:</strong> Swarnava Chakraborty | <strong>Sound:</strong> Saptarshi Sarkar
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">1:15 PM - 1:45 PM</td>
+                <td class="event-col">
+                    <span class="event-type documentary">Documentary</span>
+                    <div class="event-title">CHHERA TAMSHUK <span class="runtime">(21 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Suvarthi Mohanti | <strong>Cinematography:</strong> Srijan Biswas<br>
+                        <strong>Editor:</strong> Shubho Biswas | <strong>Sound:</strong> Somnath Bag
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">1:45 PM - 2:15 PM</td>
+                <td class="event-col">
+                    <span class="event-type discussion">Discussion</span>
+                    <div class="event-title">POST-SCREENING DISCUSSION</div>
+                </td>
+            </tr>
+            <tr class="break-row">
+                <td colspan="2">☕ BREAK: 2:15 PM - 2:45 PM</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td class="time-col">3:00 PM - 3:45 PM</td>
+                <td class="event-col">
+                    <span class="event-type diploma">Diploma Film</span>
+                    <div class="event-title">BHONDO <span class="runtime">(40 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Soumyadip Das | <strong>Cinematography:</strong> Ratnadeep Roy<br>
+                        <strong>Editor:</strong> Lisa Das | <strong>Sound:</strong> Pradipta Saha<br>
+                        <strong>Music:</strong> Pradyut Chatterjee
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">3:45 PM - 4:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type discussion">Discussion</span>
+                    <div class="event-title">POST-SCREENING DISCUSSION</div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="session-header">SPECIAL EVENT</div>
+        <table>
+            <tr>
+                <td class="time-col">4:00 PM - 6:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type discussion">Panel Discussion</span>
+                    <div class="event-title">CINEMA, CAPITALISM, AND THE MYTH OF DIGITAL DEMOCRACY</div>
+                    <div class="panel-guests">
+                        <strong>Panelists:</strong><br>
+                        • Indranil Roychowdhury (Film Director)<br>
+                        • Ritwick Chakraborty (Actor, Producer)<br>
+                        • Sukanta Majumdar (Sound Designer, Educator)<br><br>
+                        <strong>Moderator:</strong> Tapan Bhattacharya (Educator, Film Sound Engineer)
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-section">
+        <div class="day-header">📅 Day 3 | Sunday, December 21, 2025</div>
+        
+        <div class="session-header">MORNING SESSION</div>
+        <table>
+            <tr>
+                <td class="time-col">11:00 AM - 11:15 AM</td>
+                <td class="event-col">
+                    <span class="event-type spot">Spot Films</span>
+                    <div class="event-title">SPOT FILMS SHOWCASE</div>
+                    <div class="credits">15 films, 60 seconds each</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">11:15 AM - 11:30 AM</td>
+                <td class="event-col">
+                    <span class="event-type animation">Animation</span>
+                    <div class="event-title">ANIMATION SHORTS BLOCK 3</div>
+                    <div class="credits">
+                        • <strong>Crossing of Dreams</strong> — Tannistha Paul (8th Batch)<br>
+                        • <strong>Through the Hands Darkly</strong> — Ankita Biswas (8th Batch)<br>
+                        • <strong>Nemesis</strong> — Puja Sarkar (8th Batch)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">11:30 AM - 12:30 PM</td>
+                <td class="event-col">
+                    <span class="event-type documentary">Documentary</span>
+                    <div class="event-title">NOTUN KORE PABO BOLE <span class="runtime">(62 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Arkajyoti Kar | <strong>Cinematography:</strong> Madhuri Routh<br>
+                        <strong>Editor:</strong> Kaushik Chakraborty | <strong>Sound:</strong> Niladrideb Mohanta
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="session-header">AFTERNOON SESSION</div>
+        <table>
+            <tr>
+                <td class="time-col">12:30 PM - 1:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type documentary">Documentary</span>
+                    <div class="event-title">CHINTE JODI PEREI THAKO <span class="runtime">(24 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Susmita Sinha | <strong>Cinematography:</strong> Sabyasachi Banerjee<br>
+                        <strong>Editor:</strong> Sujata Kundu | <strong>Sound:</strong> Srijit Roy
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">1:00 PM - 1:30 PM</td>
+                <td class="event-col">
+                    <span class="event-type documentary">Documentary</span>
+                    <div class="event-title">FINDING PRAYERS <span class="runtime">(21 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Nilay Samiran Nandi | <strong>Cinematography:</strong> Sudip Baral<br>
+                        <strong>Editor:</strong> Arnab Bhattacharjee | <strong>Sound Design:</strong> Subhadip Paul<br>
+                        <strong>Sound Mixing:</strong> Sourav Gupta
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">1:30 PM - 2:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type diploma">Diploma Film</span>
+                    <div class="event-title">BEEJ <span class="runtime">(22 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director:</strong> Amit Basu | <strong>Cinematography:</strong> Sanjib Das<br>
+                        <strong>Editor:</strong> Manish Basu | <strong>Sound:</strong> Tapan Bhattacharya
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="time-col">2:00 PM - 2:30 PM</td>
+                <td class="event-col">
+                    <span class="event-type discussion">Discussion</span>
+                    <div class="event-title">POST-SCREENING DISCUSSION</div>
+                </td>
+            </tr>
+            <tr class="break-row">
+                <td colspan="2">☕ BREAK: 2:30 PM - 3:00 PM</td>
+            </tr>
+        </table>
+
+        <div class="session-header">CLOSING FEATURE</div>
+        <table>
+            <tr>
+                <td class="time-col">3:00 PM - 6:00 PM</td>
+                <td class="event-col">
+                    <span class="event-type feature">Alumnus Feature</span>
+                    <div class="event-title">NADHARER BHELA (2025) <span class="runtime">(179 mins)</span></div>
+                    <div class="credits">
+                        <strong>Director & Editor:</strong> Pradipta Bhattacharyya<br>
+                        <strong>Cinematography:</strong> Joydeep Dey | <strong>Sound Design:</strong> Sourav Gupta<br>
+                        <strong>Sound Mixing:</strong> Anindit Roy | <strong>Music:</strong> Satyaki Banerjee
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <h3>Festival Information</h3>
+        <p><strong>Venue:</strong> Roopkala Kendro<br>
+        <strong>Daily Timings:</strong> 11:00 AM - 6:00 PM<br>
+        <strong>Organized by:</strong> Alumni Association of Roopkala Kendro (AARKK)</p>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #c62828;"></div>
+                <span>Ceremony</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #f57c00;"></div>
+                <span>Spot Films</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ff6f00;"></div>
+                <span>Animation</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #1976d2;"></div>
+                <span>Documentary</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #388e3c;"></div>
+                <span>Diploma Film</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #7b1fa2;"></div>
+                <span>Feature Film</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #0097a7;"></div>
+                <span>Discussion</span>
+            </div>
+        </div>
+        
+        <p class="note">*Schedule subject to last-minute changes due to unforeseen circumstances.</p>
+    </div>
+
+    <script>
+        function downloadAsWord() {
+            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>FRAMES 25 Schedule</title></head><body>";
+            const footer = "</body></html>";
+            const sourceHTML = header + document.body.innerHTML + footer;
+            
+            const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            const fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'FRAMES_25_Schedule.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
+
+        function downloadAsPDF() {
+            // Hide buttons before printing
+            const buttons = document.querySelector('.button-container');
+            buttons.style.display = 'none';
+            
+            // Use browser's print to PDF functionality
+            window.print();
+            
+            // Show buttons again after a short delay
+            setTimeout(() => {
+                buttons.style.display = 'block';
+            }, 100);
+        }
+    </script>
+</body>
+</html>
